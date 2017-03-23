@@ -5,6 +5,7 @@
   ref$ = require('./config'), list = ref$.list, experimental = ref$.experimental, libraryBlacklist = ref$.libraryBlacklist, es5SpecialCase = ref$.es5SpecialCase, banner = ref$.banner;
   ref$ = require('fs'), readFile = ref$.readFile, writeFile = ref$.writeFile, unlink = ref$.unlink;
   join = require('path').join;
+  path = require('path');
   webpack = require('webpack');
   temp = require('temp');
   module.exports = function(arg$){
@@ -65,8 +66,8 @@
             }
           }),
           output: {
-            path: '',
-            filename: TARGET
+            path: path.dirname(TARGET),
+            filename: path.basename('./' + TARGET)
           }
         }, function(err, info){
           if (err) {
